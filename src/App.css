@@ -4,15 +4,13 @@
   box-sizing: border-box;
 }
 
-.signup__container{
+.route__container{
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.signup{
+
+.routes{
   width: 100;
-  max-width:  400px ;
-}
-.Alert{
-  margin: 0.5rem;
+  max-width: 400px;
 }

@@ -3,27 +3,22 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Contexts/AuthContext";
 import { Link } from "react-router-dom";
 
-export const Signup = () => {
+export const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const passwordconfirmRef = useRef();
-  const { signup } = useAuth();
+  const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (passwordRef.current.value !== passwordconfirmRef.current.value) {
-      return setError("Passwords are not same");
-    }
-
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await login(emailRef.current.value, passwordRef.current.value);
     } catch {
-      setError("Sorry couldn't create a account, try again!");
+      setError("Please enter valid email or password, failed to login! ");
     }
 
     setLoading(false);
@@ -33,7 +28,7 @@ export const Signup = () => {
     <>
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
+          <h2 className="text-center mb-4">Log In</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
@@ -43,12 +38,8 @@ export const Signup = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
-            <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type="password" ref={passwordconfirmRef} required />
-            </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
-              Sign Up
+              Log In
             </Button>
           </Form>
         </Card.Body>
@@ -59,7 +50,7 @@ export const Signup = () => {
         </Alert>
       )}
       <div className="w-100 text-center mt-2">
-        <Link to="/login"> Already have an account? </Link>
+        Need an account? <Link to="/signup">Register</Link>
       </div>
     </>
   );
