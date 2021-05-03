@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const emailRef = useRef();
@@ -9,6 +9,7 @@ export const Login = () => {
   const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,6 +18,8 @@ export const Login = () => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
+      navigate('/', { replace: true });
+
     } catch {
       setError("Please enter valid email or password, failed to login! ");
     }
