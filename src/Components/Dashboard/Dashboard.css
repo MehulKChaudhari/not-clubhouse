@@ -1,0 +1,8 @@
+.navbar__container{
+    display:flex;
+}
+
+.navbar__list-items{
+    display: flex;
+    justify-content: end;
+}

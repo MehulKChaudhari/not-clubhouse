@@ -3,7 +3,7 @@ import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../Contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Dashboard = () => {
+export const Profile = () => {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const Dashboard = () => {
 
   return (
     <>
-      <h1>Dashboard</h1>
+      <h1>Profile</h1>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
